@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>UoE Rentals - Student Housing Near UOE</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-building"></i>
+                <span>UoE <span class="logo-highlight">Rentals</span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#listings">Hostels</a>
+                <a href="#" id="listHostelBtn" class="list-btn">📋 List Your Hostel</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Find Your Perfect <span class="gradient-text">Student Home</span> Near UoE Gate A</h1>
+            <p>Discover verified hostels, compare prices, and connect directly with landlords — all in one place</p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" id="statTotal">0</span>
+                    <span class="stat-label">Rooms Available</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">Regions Covered</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" id="statVerified">0</span>
+                    <span class="stat-label">Verified Listings</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search & Filters Section -->
+    <div class="search-fixed-wrapper">
+        <div class="search-fixed">
+            <div class="search-container">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search by hostel name, region, or room type...">
+                </div>
+                <button class="filter-toggle" id="filterToggle">
+                    <i class="fas fa-sliders-h"></i> Filters
+                </button>
+            </div>
+
+            <div class="filter-panel" id="filterPanel">
+                <div class="filter-row">
+                    <div class="filter-block">
+                        <label><i class="fas fa-map-marker-alt"></i> Region</label>
+                        <div class="filter-tags" id="regionFilters">
+                            <button class="tag active" data-region="all">All Regions</button>
+                            <button class="tag" data-region="Sogomo">Sogomo</button>
+                            <button class="tag" data-region="Mti Moja">Mti Moja</button>
+                            <button class="tag" data-region="Wings Drive">Wings Drive</button>
+                            <button class="tag" data-region="Fadhili">Fadhili</button>
+                            <button class="tag" data-region="Upande">Upande</button>
+                            <button class="tag" data-region="Kambii">Kambii</button>
+                            <button class="tag" data-region="Scholastica">Scholastica</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-row">
+                    <div class="filter-block">
+                        <label><i class="fas fa-tag"></i> Price Range (Ksh)</label>
+                        <div class="filter-tags" id="priceFilters">
+                            <button class="tag active" data-price="all">Any Price</button>
+                            <button class="tag" data-price="below3500">Below 3,500</button>
+                            <button class="tag" data-price="3500-4500">3,500 - 4,500</button>
+                            <button class="tag" data-price="4500-5500">4,500 - 5,500</button>
+                            <button class="tag" data-price="above5500">Above 5,500</button>
+                        </div>
+                    </div>
+
+                    <div class="filter-block">
+                        <label><i class="fas fa-bed"></i> Room Type</label>
+                        <div class="filter-tags" id="typeFilters">
+                            <button class="tag active" data-type="all">All Types</button>
+                            <button class="tag" data-type="Single Room">Single Room</button>
+                            <button class="tag" data-type="Bedsitter">Bedsitter</button>
+                            <button class="tag" data-type="One Bedroom">One Bedroom</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="results-header">
+        <div class="results-info">
+            <i class="fas fa-building"></i>
+            <span id="resultsCount">Loading rooms...</span>
+        </div>
+        <div class="results-sort">
+            <label>Sort by:</label>
+            <select id="sortSelect">
+                <option value="default">Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="vacancy">Vacancy: Most Available</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="listings-grid" id="listingsContainer">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Finding the best rooms for you...</p>
+        </div>
+    </div>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Own a Hostel Near UoE?</h2>
+            <p>List your property for free and connect with hundreds of students looking for accommodation</p>
+            <button class="cta-btn" id="ctaListBtn"><i class="fab fa-whatsapp"></i> WhatsApp 0743069874 to List</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>UoE Rentals</h4>
+                <p>Making student housing search easier since 2024</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#">Browse Hostels</a>
+                <a href="#">How It Works</a>
+                <a href="admin.html">Landlord Portal</a>
+                <a href="#">FAQ</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p><i class="fas fa-phone"></i> 0743069874</p>
+                <p><i class="fas fa-envelope"></i> gideonkipruto34@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Near UoE,Eldoret</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rentals web. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Modal -->
+    <div id="listingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2><i class="fab fa-whatsapp"></i> List Your Hostel</h2>
+            <p>Contact us directly on WhatsApp to list your property:</p>
+            <a href="https://wa.me/254743069874?text=Hi%2C%20I%20want%20to%20list%20my%20hostel%20near%20UoE%20Gate%20A" target="_blank" class="modal-btn" style="background:#25D366;">
+                <i class="fab fa-whatsapp"></i> WhatsApp 0743069874
+            </a>
+            <hr>
+            <p style="font-size: 14px; color: #666;">Or call us directly: <strong>0743069874</strong></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
