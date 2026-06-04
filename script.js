@@ -8,7 +8,6 @@ let currentRegion = "all";
 let currentPrice = "all";
 let currentType = "all";
 let searchTerm = "";
-let currentSort = "default";
 
 // Load from localStorage if available
 function loadData() {
